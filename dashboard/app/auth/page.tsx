@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useAuthStore } from "@/store/auth.store";
+import { useAuthStore } from "@/store/auth";
 import { Button } from "@/components/ui/button";
 import { InputGroupInput, InputGroup, InputGroupAddon } from "@/components/ui/input-group";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
