@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { DATABASE_ID, databases, JWT_SECRET, OTP_COLLECTION, USERS_COLLECTION } from "@/lib/appwrite";
+import { DATABASE_ID, databases, JWT_SECRET, OTP_COLLECTION, DEVS_COLLECTION } from "@/lib/appwrite";
 import { Query, ID } from "node-appwrite";
 import jwt from "jsonwebtoken";
 
@@ -31,14 +31,14 @@ export async function POST(req: NextRequest) {
 
     await databases.deleteDocument(DATABASE_ID, OTP_COLLECTION, otp.$id);
 
-    const usersResult = await databases.listDocuments(DATABASE_ID, USERS_COLLECTION, [
+    const usersResult = await databases.listDocuments(DATABASE_ID, DEVS_COLLECTION, [
         Query.equal("email", email),
     ]);
 
     let user = usersResult.documents[0];
 
     if (!user) {
-        user = await databases.createDocument(DATABASE_ID, USERS_COLLECTION, ID.unique(), {
+        user = await databases.createDocument(DATABASE_ID, DEVS_COLLECTION, ID.unique(), {
             email
         });
     }
